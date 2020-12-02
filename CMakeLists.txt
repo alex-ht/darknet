@@ -179,7 +179,7 @@ if(CMAKE_COMPILER_IS_GNUCC OR "${CMAKE_CXX_COMPILER_ID}" MATCHES "Clang")
   if(AVX2_FOUND)
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -mavx -mavx2 -msse3 -msse4.1 -msse4.2 -msse4a")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -mavx -mavx2 -msse3 -msse4.1 -msse4.2 -msse4a")
-  else()
+  endif()
 endif()
 
 if(OpenCV_FOUND)
