@@ -73,6 +73,7 @@ cap_cv* get_capture_webcam(int index);
 cap_cv* get_capture_webcam_api(int index, int api);
 void release_capture(cap_cv* cap);
 
+image get_capture_frame_buf(cap_cv *cap, mat_cv *mat);
 mat_cv* get_capture_frame_cv(cap_cv *cap);
 int get_stream_fps_cpp_cv(cap_cv *cap);
 double get_capture_property_cv(cap_cv *cap, int property_id);

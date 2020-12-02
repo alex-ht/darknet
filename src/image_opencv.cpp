@@ -640,6 +640,30 @@ extern "C" mat_cv* get_capture_frame_cv(cap_cv *cap) {
     return (mat_cv *)mat;
 }
 // ----------------------------------------
+extern "C" image get_capture_frame_buf(cap_cv *cap, mat_cv *mat) {
+    if (mat == nullptr) {
+      mat = (mat_cv*)new cv::Mat();
+    }
+    try {
+        if (cap) {
+            cv::VideoCapture &cpp_cap = *(cv::VideoCapture *)cap;
+            if (cpp_cap.isOpened())
+            {
+                cpp_cap >> *(cv::Mat*)mat;
+            }
+            else std::cout << " Video-stream stopped! \n";
+        }
+        else cerr << " cv::VideoCapture isn't created \n";
+    }
+    catch (...) {
+        std::cout << " OpenCV exception: Video-stream stoped! \n";
+    }
+    if (((cv::Mat*)mat)->empty()) return make_empty_image(0, 0, 0);
+    image im = mat_to_image(*(cv::Mat*)mat);
+    rgbgr_image(im);
+    return im;
+}
+// ----------------------------------------
 
 extern "C" int get_stream_fps_cpp_cv(cap_cv *cap)
 {
