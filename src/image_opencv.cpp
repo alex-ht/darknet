@@ -589,11 +589,15 @@ extern "C" cap_cv* get_capture_video_stream(const char *path) {
 }
 // ----------------------------------------
 
-extern "C" cap_cv* get_capture_webcam(int index)
+extern "C" cap_cv* get_capture_webcam(int index) {
+    return get_capture_webcam_api(index, cv::CAP_ANY);
+}
+
+extern "C" cap_cv* get_capture_webcam_api(int index, int api)
 {
     cv::VideoCapture* cap = NULL;
     try {
-        cap = new cv::VideoCapture(index);
+        cap = new cv::VideoCapture(index, api);
         //cap->set(CV_CAP_PROP_FRAME_WIDTH, 1280);
         //cap->set(CV_CAP_PROP_FRAME_HEIGHT, 960);
     }
