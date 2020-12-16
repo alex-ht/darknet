@@ -26,7 +26,7 @@
 #endif
 
 void *xmalloc(size_t size) {
-    void *ptr=memalign(8, size);
+    void *ptr=malloc(size);
     if(!ptr) {
         malloc_error();
     }
@@ -34,17 +34,15 @@ void *xmalloc(size_t size) {
 }
 
 void *xcalloc(size_t nmemb, size_t size) {
-    void *ptr=memalign(8, nmemb *size);
+    void *ptr=calloc(nmemb,size);
     if(!ptr) {
         calloc_error();
     }
-    memset(ptr, 0, nmemb *size);
     return ptr;
 }
 
 void *xrealloc(void *ptr, size_t size) {
-    free(ptr);
-    ptr=memalign(8, size);
+    ptr=realloc(ptr,size);
     if(!ptr) {
         realloc_error();
     }
