@@ -1026,7 +1026,7 @@ image resize_max(image im, int max)
         w = (w * max) / h;
         h = max;
     }
-    if(w == im.w && h == im.h) return im;
+    // if(w == im.w && h == im.h) return im;  // avoid double free
     image resized = resize_image(im, w, h);
     return resized;
 }
@@ -1042,7 +1042,7 @@ image resize_min(image im, int min)
         w = (w * min) / h;
         h = min;
     }
-    if(w == im.w && h == im.h) return im;
+    // if(w == im.w && h == im.h) return im;  // avoid double free
     image resized = resize_image(im, w, h);
     return resized;
 }
@@ -1683,6 +1683,7 @@ void free_image(image m)
 {
     if(m.data){
         free(m.data);
+        m.data = NULL;
     }
 }
 
