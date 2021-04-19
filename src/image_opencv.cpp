@@ -605,7 +605,11 @@ extern "C" cap_cv* get_capture_webcam_api(int index, int api)
 {
     cv::VideoCapture* cap = NULL;
     try {
+#ifndef CV_BEFORE_344
         cap = new cv::VideoCapture(index, api);
+#else
+        cap = new cv::VideoCapture(index);
+#endif
         //cap->set(CV_CAP_PROP_FRAME_WIDTH, 1280);
         //cap->set(CV_CAP_PROP_FRAME_HEIGHT, 960);
     }
