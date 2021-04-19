@@ -26,6 +26,12 @@
 #include <opencv2/core/types.hpp>
 #include <opencv2/videoio/videoio.hpp>
 #include <opencv2/imgcodecs/imgcodecs.hpp>
+#if CV_VERSION_MAJOR == 3
+#if CV_VERSION_MINOR < 4 || CV_VERSION_REVISION < 4
+// before 3.4.4
+#define CV_BEFORE_344
+#endif
+#endif
 #endif
 
 // OpenCV includes for OpenCV 2.x
@@ -34,6 +40,8 @@
 #include <opencv2/imgproc/imgproc_c.h>
 #include <opencv2/core/types_c.h>
 #include <opencv2/core/version.hpp>
+// before 3.4.4
+#define CV_BEFORE_344
 #endif
 
 //using namespace cv;
