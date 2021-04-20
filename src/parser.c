@@ -1707,8 +1707,10 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
 
     LAYER_TYPE lt = net.layers[net.n - 1].type;
     if ((net.w % 32 != 0 || net.h % 32 != 0) && (lt == YOLO || lt == REGION || lt == DETECTION)) {
+#ifdef DEBUG
         printf("\n Warning: width=%d and height=%d in cfg-file must be divisible by 32 for default networks Yolo v1/v2/v3!!! \n\n",
             net.w, net.h);
+#endif
     }
     return net;
 }
