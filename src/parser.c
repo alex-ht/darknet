@@ -1365,8 +1365,9 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     params.batch = net.batch;
     params.time_steps = net.time_steps;
     params.net = net;
+#ifdef DEBUG
     printf("mini_batch = %d, batch = %d, time_steps = %d, train = %d \n", net.batch, net.batch * net.subdivisions, net.time_steps, params.train);
-
+#ednif
     int avg_outputs = 0;
     int avg_counter = 0;
     float bflops = 0;
@@ -1667,8 +1668,10 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     net.outputs = get_network_output_size(net);
     net.output = get_network_output(net);
     avg_outputs = avg_outputs / avg_counter;
+#ifdef DEBUG
     fprintf(stderr, "Total BFLOPS %5.3f \n", bflops);
     fprintf(stderr, "avg_outputs = %d \n", avg_outputs);
+#endif
 #ifdef GPU
     get_cuda_stream();
     get_cuda_memcpy_stream();
