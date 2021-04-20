@@ -110,7 +110,9 @@ char *option_find_str(list *l, char *key, char *def)
 {
     char *v = option_find(l, key);
     if(v) return v;
+#ifdef DEBUG
     if(def) fprintf(stderr, "%s: Using default '%s'\n", key, def);
+#endif
     return def;
 }
 
@@ -125,7 +127,9 @@ int option_find_int(list *l, char *key, int def)
 {
     char *v = option_find(l, key);
     if(v) return atoi(v);
+#ifdef DEBUG
     fprintf(stderr, "%s: Using default '%d'\n", key, def);
+#ednif
     return def;
 }
 
@@ -147,6 +151,8 @@ float option_find_float(list *l, char *key, float def)
 {
     char *v = option_find(l, key);
     if(v) return atof(v);
+#ifdef DEBUG
     fprintf(stderr, "%s: Using default '%lf'\n", key, def);
+#endif
     return def;
 }
