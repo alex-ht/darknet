@@ -129,7 +129,7 @@ int option_find_int(list *l, char *key, int def)
     if(v) return atoi(v);
 #ifdef DEBUG
     fprintf(stderr, "%s: Using default '%d'\n", key, def);
-#ednif
+#endif
     return def;
 }
 
