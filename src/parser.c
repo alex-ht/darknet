@@ -1367,7 +1367,7 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     params.net = net;
 #ifdef DEBUG
     printf("mini_batch = %d, batch = %d, time_steps = %d, train = %d \n", net.batch, net.batch * net.subdivisions, net.time_steps, params.train);
-#ednif
+#endif
     int avg_outputs = 0;
     int avg_counter = 0;
     float bflops = 0;
