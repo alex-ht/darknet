@@ -1383,7 +1383,7 @@ network parse_network_cfg_custom(char *filename, int batch, int time_steps)
     free_section(s);
 #ifdef DEBUG
     fprintf(stderr, "   layer   filters  size/strd(dil)      input                output\n");
-#enidf
+#endif
     while(n){
         params.index = count;
         fprintf(stderr, "%4d ", count);
