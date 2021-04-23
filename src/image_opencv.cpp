@@ -647,6 +647,10 @@ extern "C" mat_cv* get_capture_frame_cv(cap_cv *cap) {
         else cerr << " cv::VideoCapture isn't created \n";
     }
     catch (...) {
+        if(mat != NULL) {
+            delete mat;
+            mat = NULL;
+        }
         std::cout << " OpenCV exception: Video-stream stoped! \n";
     }
     return (mat_cv *)mat;
@@ -772,7 +776,9 @@ extern "C" image get_image_from_stream_cpp(cap_cv *cap)
             src = (cv::Mat*)get_capture_frame_cv(cap);
             if (!src) return make_empty_image(0, 0, 0);
         } while (src->cols < 1 || src->rows < 1 || src->channels() < 1);
+#ifdef DEBUG
         printf("Video stream: %d x %d \n", src->cols, src->rows);
+#endif
     }
     else
         src = (cv::Mat*)get_capture_frame_cv(cap);
